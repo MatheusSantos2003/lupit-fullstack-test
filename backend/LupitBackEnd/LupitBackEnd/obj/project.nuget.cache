@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "y5P/7vjXqTPzi5CxdWGEwKG9O6hB9fTkGFbUXw9GVZapRGXmmjq294EA4KaHwHzad3q8e64O0YlWpKCqZzz+lA==",
+  "success": true,
+  "projectFilePath": "D:\\Github\\Lupit\\lupit-teste-fullstack\\backend\\LupitBackEnd\\LupitBackEnd\\LupitBackEnd.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Trabalho\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.11.1\\microsoft.visualstudio.azure.containers.tools.targets.1.11.1.nupkg.sha512"
+  ],
+  "logs": []
+}

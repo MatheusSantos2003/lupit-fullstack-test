@@ -1,7 +1,13 @@
+using LupitBackEnd.Models;
+using LupitBackEnd.Repositories;
+using LupitBackEnd.Repositories.Times;
+using LupitBackEnd.Utils;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,7 +31,13 @@ namespace LupitBackEnd
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var connectionString = "Host=localhost;Database=lupit;Username=postgres;Password='root'";
             services.AddControllers();
+
+            RegisterServices(services);
+
+            services.AddDbContext<Context>(options =>
+                 options.UseNpgsql(connectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +58,12 @@ namespace LupitBackEnd
             {
                 endpoints.MapControllers();
             });
+        }
+
+        private static void RegisterServices(IServiceCollection services)
+        {
+            NativeInjectorBootStrapper.RegisterServices(services);
+        
         }
     }
 }

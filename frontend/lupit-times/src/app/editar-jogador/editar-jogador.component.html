@@ -1,0 +1,50 @@
+<app-ui-preloader [display]="isLoading" ></app-ui-preloader>
+<div class="my-4">
+  <button [routerLink]="['/jogador']" class="btn btn-primary"><i class="fas fa-chevron-left"></i>  Voltar</button>
+  <div class="my-2">
+    <h6>Edição de Jogador</h6>
+  </div>
+</div>
+
+<div>
+  <div class="card">
+    <div class="card-body">
+      <form [formGroup]="formulario" (ngSubmit)="OnSubmit()">
+        <input type="hidden" formControlName="id">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="nome">Nome</label>
+            <input type="text" required formControlName="nome" name="nome" placeholder="Nome" class="form-control"
+            [ngClass]="{
+              'is-invalid ' : submitted && formulario.controls['nome']?.errors
+            }">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="idade">Idade</label>
+            <input type="number" required name="idade" formControlName="idade" placeholder="Idade" class="form-control"
+            [ngClass]="{
+              'is-invalid ' : submitted && formulario.controls['idade']?.errors
+            }">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="time">Time</label>
+            <select required formControlName="time" class="form-control" name="time"
+            [ngClass]="{
+              'is-invalid ' : submitted && formulario.controls['time']?.errors
+            }"
+            >
+              <option *ngFor="let time of listaTimes" [selected]="time_select?.id == time.id ? true : false"  [ngValue]="time">{{time.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="d-flex justify-content-end">
+          <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+

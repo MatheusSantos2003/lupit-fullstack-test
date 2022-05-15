@@ -21,36 +21,36 @@ namespace LupitBackEnd.Controllers
             _timesRepository = repository;
         }
 
-        // GET: api/<ValuesController>
+       
         [HttpGet]
-        public async Task<IActionResult> Get()
+        [Route("ListarTimes")]
+        public async Task<IActionResult> ListarTimes()
         {
             return Ok(await _timesRepository.ListarTimes());
         }
 
-        // GET api/<ValuesController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
 
-        // POST api/<ValuesController>
+       
         [HttpPost]
-        public void Post([FromBody] string value)
+        [Route("AdicionarTime")]
+        public async Task<IActionResult> AdicionarTime([FromBody] Time time)
         {
+            return Ok(await _timesRepository.AdicionarTime(time));
         }
 
-        // PUT api/<ValuesController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+      
+        [HttpPut]
+        [Route("EditarTime/{id}")]
+        public async Task<IActionResult> EditarTime(int id,[FromBody] Time time)
         {
+            return Ok(await _timesRepository.EditarTime(time));
         }
 
-        // DELETE api/<ValuesController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        
+        [HttpDelete("ExlcuirTime/{id}")]
+        public async Task<IActionResult> Delete(int id)
         {
+            return Ok(await _timesRepository.RemoverTime(id));
         }
     }
 }

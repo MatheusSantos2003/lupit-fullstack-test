@@ -58,6 +58,9 @@ export class JogadoresComponent implements OnInit {
       if (res.sucesso) {
         this.ListaJogadores = res.resultado;
         this.isLoading = false;
+      }else{
+        console.log(res.mensagem);
+        this.isLoading = false;
       }
     });
   }

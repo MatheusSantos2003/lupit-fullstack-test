@@ -1,0 +1,40 @@
+
+
+
+<app-ui-preloader [display]="isLoading" [fullscreen]="true"></app-ui-preloader>
+  <div class="my-5 d-flex justify-content-between align-items-center">
+    <h6>Times</h6>
+    <button [routerLink]="['/CadastrarTime']" class="btn btn-primary"><i class="fas fa-plus"></i> Adicionar Time</button>
+  </div>
+
+  <div>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Data De Criação</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let time of ListaTime">
+          <th scope="row">{{time.id}}</th>
+          <td>{{time.name}} </td>
+          <td>{{time.created_at | date :"dd/MM/yyyy"}}</td>
+          <td class="text-center  ">
+            <span (click)="Editar()"> <i class="fas mouseclick p-2 fa-pen"></i> </span>
+            <span (click)="Excluir()"> <i class="fas mouseclick p-2 fa-trash"></i> </span>
+          </td>
+        </tr>
+        <!-- <tr>
+          <td colspan="5" class="text-center">
+            Não Foram Encontrados Jogadores!
+          </td>
+        </tr> -->
+      </tbody>
+    </table>
+  </div>
+
+
+

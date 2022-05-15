@@ -31,13 +31,21 @@ namespace LupitBackEnd
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connectionString = "Host=localhost;Database=lupit;Username=postgres;Password='root'";
+           
             services.AddControllers();
 
             RegisterServices(services);
 
-            services.AddDbContext<Context>(options =>
-                 options.UseNpgsql(connectionString));
+            services.AddCors();
+
+            services.AddSwaggerGen(options =>
+            {
+                options.CustomSchemaIds(x => x.FullName);
+                options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Lupit Backend", Version = "v1" });
+               
+
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,9 +58,21 @@ namespace LupitBackEnd
 
             app.UseHttpsRedirection();
 
+            app.UseCors(x => x
+          .AllowAnyOrigin()
+          .AllowAnyMethod()
+          .AllowAnyHeader());
+
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Lupit Backend");
+            });
 
             app.UseEndpoints(endpoints =>
             {

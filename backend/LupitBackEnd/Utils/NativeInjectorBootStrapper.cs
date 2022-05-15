@@ -1,5 +1,6 @@
 ﻿using LupitBackEnd.Models;
 using LupitBackEnd.Repositories;
+using LupitBackEnd.Repositories.Jogadores;
 using LupitBackEnd.Repositories.Times;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +21,7 @@ namespace LupitBackEnd.Utils
             services.AddTransient<ClaimsPrincipal>(s => s.GetService<IHttpContextAccessor>().HttpContext.User);
         
             services.AddScoped<ITimesRepository, TimesRepository>();
+            services.AddScoped<IJogadoresRepository, JogadoresRepository>();
             services.AddScoped<IDataBaseConnection, DataBaseConnection>();
         }
     }

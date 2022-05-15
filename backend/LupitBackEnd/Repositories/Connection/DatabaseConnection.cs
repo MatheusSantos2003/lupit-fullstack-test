@@ -16,11 +16,9 @@ namespace LupitBackEnd.Models
 
         public DataBaseConnection()
         {
-
-
-            this.Connection = new NpgsqlConnection("Server=localhost;Database=lupit;Uid=postgres;Pwd='root';");
+            
+            this.Connection = new NpgsqlConnection("Host=localhost;Database=lupit;Username=postgres;Password='root'");
             this.Connection.Open();
-
         }
     }
 }

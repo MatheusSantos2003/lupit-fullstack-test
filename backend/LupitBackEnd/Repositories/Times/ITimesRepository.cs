@@ -8,6 +8,9 @@ namespace LupitBackEnd.Repositories.Times
 {
     public interface ITimesRepository: IBaseRepository
     {
-        Task<List<Time>> ListarTimes();
+        Task<ResponseModel<List<Time>>> ListarTimes();
+        Task<ResponseModel<bool>> AdicionarTime(Time time);
+        Task<ResponseModel<bool>> EditarTime(Time time);
+        Task<ResponseModel<bool>> RemoverTime(int Id);
     }
 }
